@@ -1,6 +1,6 @@
 {
     "name": "iamkarsoft/kudi",
-    "description": "A laravel package to convert currency to ghana cedis(GHS)",
+    "description": "A laravel package to convert currency to/from ghana cedis(GHS)",
     "type": "library",
     "license": "MIT",
     "homepage": "https://github.com/iamkarsoft/kudi",

@@ -1,6 +1,7 @@
 # Kudi
 
-A laravel package to convert currency to / from Ghana Cedis(GHS)
+## About
+A Laravel package to convert currencies to/from Ghana Cedis(GHS).
 
 
 ## Installation

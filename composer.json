@@ -1,37 +1,38 @@
 {
-    "name": "iamkarsoft/kudi",
-    "description": "A laravel package to convert currency to/from ghana cedis(GHS)",
-    "type": "library",
-    "license": "MIT",
-    "homepage": "https://github.com/iamkarsoft/kudi",
-    "authors": [
-        {
-            "name": "Kofi Ramos Amoussou",
-            "email": "karsoft92@gmail.com",
-            "role": "Web Developer"
-        }
-    ],
-    "require": {
-         "php": "^7.3|^8.1"
-     },
-    "require-dev": {
-        "orchestra/testbench": "^6.20",
-        "phpunit/phpunit": "^9.5"
-     },
-     "autoload":{
-        "psr-4":{
-            "Iamkarsoft\\Kudi\\":"src"
-        }
-     },
-     "extra":{
-        "laravel":{
-            "providers":[
-                "Iamkarsoft\\Kudi\\KudiServiceProvider"
-            ],
-            "aliases":{
-                "Kudi": "Iamkarsoft\\Kudi\\Facades\\Kudi"
-            }
-        }
-     }
-
-  }
+  "name": "iamkarsoft/kudi",
+  "description": "A laravel package to convert currency to/from ghana cedis(GHS)",
+  "type": "library",
+  "license": "MIT",
+  "homepage": "https://github.com/iamkarsoft/kudi",
+  "authors": [
+    {
+      "name": "Kofi Ramos Amoussou",
+      "email": "karsoft92@gmail.com",
+      "role": "Web Developer"
+    }
+  ],
+  "require": {
+    "php": "^7.3|^8.1"
+  },
+  "require-dev": {
+    "orchestra/testbench": "^6.20",
+    "phpunit/phpunit": "^9.5"
+  },
+  "autoload": {
+    "psr-4": {
+      "Iamkarsoft\\Kudi\\": "src"
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Iamkarsoft\\Kudi\\KudiServiceProvider"
+      ],
+      "aliases": {
+        "Kudi": "Iamkarsoft\\Kudi\\Facades\\Kudi"
+      }
+    }
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
+}

@@ -1,16 +1,11 @@
 <?php
 
 namespace Iamkarsoft\Kudi;
-
-class Kudi
+use Illuminate\Support\Facades\Facade;
+class Kudi extends Facade
 {
-    public function convertTo($amount, $currency = null)
-    {
-        return $this->app(Kudi::class)->create($amount, $currency);
-    }
-
-    public function convertFrom($amount, $currency = null)
-    {
-        return app(Kudi::class)->parse($amount, $currency);
-    }
+     protected static function getFacadeAccessor()
+        {
+            return Kudi::class;
+        }
 }

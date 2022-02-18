@@ -18,7 +18,7 @@ class KudiFactory
         $currency = ucwords($currency);
 
         $response = Http::get("https://freecurrencyapi.net/api/v2/latest?apikey={$api_key}&base_currency={$currency}")['data'];
-        $value = $response['GHS'] * $amount ;
+        $value = number_format($response['GHS'] * $amount,2, '.', ' ') ;
 
         return "{$value} GHS";
     }
@@ -36,7 +36,7 @@ class KudiFactory
         $api_key = config('kudi.currency_api_key');
         $currency = ucwords($currency);
         $response = Http::get("https://freecurrencyapi.net/api/v2/latest?apikey={$api_key}&base_currency=GHS")['data'];
-        $value = $response[$currency] * $amount ;
+        $value = number_format($response[$currency] * $amount,2,'.','') ;
         return "{$value} {$currency}";
     }
 

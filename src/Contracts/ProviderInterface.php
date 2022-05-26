@@ -1,12 +1,13 @@
-<?php 
+<?php
 
 namespace Iamkarsoft\Kudi\Contracts;
 
 
-interface ProviderInterface {
+interface ProviderInterface
+{
 
-public function convertFrom();
 
-public function convertTo()
+    public function convertFrom($currency, $amount);
 
+    public function convertTo($currency, $amount);
 }

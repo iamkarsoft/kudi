@@ -13,9 +13,12 @@ A Laravel package to convert currencies to/from Ghana Cedis(GHS).
 `php artisan vendor:publish --provider="Iamkarsoft\Kudi\KudiServiceProvider" --tag="config"`
 
 
-## Dependencies 
+## Providers
 
-You'll need a [Free Currency API](https://freecurrencyapi.net/) Account and add `CURRENCY_API_KEY=Your_API_KEY` in your  `.env` file 
+You'll need to create accounts and get your api keys from the providers you wish to use.
+
+- For [Free Currency API](https://freecurrencyapi.net/) Account and add `KUDI_API_KEY=Your_API_KEY` and `KUDI_API_PROVIDER="free currency api"` in your  `.env` file 
+- For [Currency Data Api](https://apilayer.com/marketplace/currency_data-api) Account and add `KUDI_API_KEY=Your_API_KEY` and `KUDI_API_PROVIDER="currency data api"` in your  `.env` file 
 
 
 ## Usage
@@ -29,6 +32,27 @@ Converting From Any Currency to GHS
 Converting to Any Currency from GHS
 ```php 
  Kudi::convertTo('EUR',10000);
+```
+
+## Response
+
+If your request is successful. your response will look something like the following:
+<br>
+
+```js
+// converting to Ghana Cedis
+{
+"value": "7.75",
+"currency": "GHS",
+"provider": "currency data api"
+},
+
+// converting from Ghana cedis
+{
+"value": "120.55",
+"currency": "EUR",
+"provider": "currency data api"
+}
 ```
 
 

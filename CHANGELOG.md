@@ -2,8 +2,8 @@
 
 ## 0.2.0 - 26 /05 /2022 
 
-- Add another providers [Currency Data Api](https://apilayer.com/marketplace/currency_data-api)
-- Put response in a $data array containing `value`,`currency`, `provider name`
+- Add another provider [Currency Data Api](https://apilayer.com/marketplace/currency_data-api)
+- Put response in a $data array containing `value`,`currency`, `provider`
 
 ## 0.1.1 - 18 / 02 / 2022
 - Format value and round up for better visual

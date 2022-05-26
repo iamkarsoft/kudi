@@ -1,4 +1,3 @@
-# Kudi
 
 ## About
 A Laravel package to convert currencies to/from Ghana Cedis(GHS).
@@ -24,19 +23,46 @@ You'll need to create accounts and get your api keys from the providers you wish
 ## Usage
 
 
+1. **In a controller**
+
 Converting From Any Currency to GHS
+
 ```php 
  Kudi::convertFrom('USD',20); 
+
+// assigning result to a variable
+$converted= Kudi::convertFrom('USD',20); 
+
 ```
-  
+
 Converting to Any Currency from GHS
+
 ```php 
  Kudi::convertTo('EUR',10000);
+
+// assigning result to a variable
+ $converted = Kudi::convertTo('EUR',10000);
 ```
+
+2. **Using it in a blade template**
+
+```php
+
+// to get the value
+{{$converted['value']}} 
+
+// to get the currency
+{{$converted['currency']}}
+
+// to get the provider you're using
+{{$converted['provider']}}
+```
+
 
 ## Response
 
 If your request is successful. your response will look something like the following:
+
 <br>
 
 ```js

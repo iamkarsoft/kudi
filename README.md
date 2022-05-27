@@ -18,6 +18,7 @@ You'll need to create accounts and get your api keys from the providers you wish
 
 - For [Free Currency API](https://freecurrencyapi.net/) Account and add `KUDI_API_KEY=Your_API_KEY` and `KUDI_API_PROVIDER="free currency api"` in your  `.env` file 
 - For [Currency Data Api](https://apilayer.com/marketplace/currency_data-api) Account and add `KUDI_API_KEY=Your_API_KEY` and `KUDI_API_PROVIDER="currency data api"` in your  `.env` file 
+- For [Fixer Api](https://apilayer.com/marketplace/fixer-api) Account and add `KUDI_API_KEY=Your_API_KEY` and `KUDI_API_PROVIDER="fixer api"` in your  `.env` file 
 
 
 ## Usage

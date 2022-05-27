@@ -42,6 +42,15 @@ class KudiFactory implements ProviderInterface
         }
 
 
+        if ($this->provider == 'fixer api') {
+            $response = Http::withHeaders([
+                'apikey' => $this->api_key
+            ])
+                ->get("https://api.apilayer.com/currency_data/convert?to=GHS&from={$currency}&amount={$amount}")['result'];
+            $value = number_format($response, 2, '.', '');
+        }
+
+
         $data = [
             'value' => $value,
             "currency" => "GHS",
@@ -74,6 +83,16 @@ class KudiFactory implements ProviderInterface
                 ->get("https://api.apilayer.com/currency_data/convert?to={$currency}&from=GHS&amount={$amount}")['result'];
             $value = number_format($response, 2, '.', '');
         }
+
+
+        if ($this->provider == 'fixer api') {
+            $response = Http::withHeaders([
+                'apikey' => $this->api_key
+            ])
+                ->get("https://api.apilayer.com/currency_data/convert?to={$currency}&from=GHS&amount={$amount}")['result'];
+            $value = number_format($response, 2, '.', '');
+        }
+
 
         $data = [
             'value' => $value,

@@ -26,7 +26,7 @@ class KudiServiceProvider extends ServiceProvider
         //        $this->app->singleton('kudi', Kudi::class);
         // binding facades
         $this->app->bind('kudi', function () {
-            return new KudiFactory();
+            return new Kudi();
         });
 
         $this->mergeConfigFrom(__DIR__ . '/../config/kudi.php', 'kudi');

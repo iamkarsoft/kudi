@@ -28,24 +28,8 @@ class KudiFactory
     public function convertFrom($currency, $amount)
     {
 
-
-
-        if ($this->provider == 'free currency api') {
-            $provider = new FreeCurrencyApi();
-            $data = $provider->convertFrom($currency, $amount);
-        }
-
-        if ($this->provider == 'currency data api') {
-            $provider = new CurrencyDataApi();
-            $data = $provider->convertFrom($currency, $amount);
-        }
-
-        if ($this->provider == 'fixer api') {
-            $provider = new FixerApi();
-            $data = $provider->convertFrom($currency, $amount);
-        }
-
-
+        $provider =  Kudi::make(preg_replace("/\s+/", "", ucwords($this->provider)));
+        $data = $provider->convertFrom($currency, $amount);
         return $data;
     }
 
@@ -60,16 +44,8 @@ class KudiFactory
     public function convertTo($currency, $amount)
     {
 
-        if ($this->provider == 'free currency api') {
-            $provider = new FreeCurrencyApi();
-            $data = $provider->convertTo($currency, $amount);
-        }
-
-        if ($this->provider == 'currency data api') {
-            $provider = new CurrencyDataApi();
-            $data = $provider->convertTo($currency, $amount);
-        }
-
+        $provider =  Kudi::make(preg_replace("/\s+/", "", ucwords($this->provider)));
+        $data = $provider->convertTo($currency, $amount);
         return $data;
     }
 }

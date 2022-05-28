@@ -2,11 +2,6 @@
 
 namespace Iamkarsoft\Kudi;
 
-use Illuminate\Support\Facades\Http;
-use Iamkarsoft\Kudi\Providers\FixerApi;
-use Iamkarsoft\Kudi\Providers\CurrencyDataApi;
-use Iamkarsoft\Kudi\Providers\FreeCurrencyApi;
-use Iamkarsoft\Kudi\Contracts\ProviderInterface;
 
 
 class KudiFactory

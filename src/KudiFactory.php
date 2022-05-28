@@ -20,7 +20,7 @@ class KudiFactory
 
     public function __construct()
     {
-        $this->provider = config('kudi.kudi_api_provider');;
+        $this->provider = config('kudi.kudi_api_provider');
     }
 
 

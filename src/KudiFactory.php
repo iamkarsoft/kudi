@@ -2,11 +2,14 @@
 
 namespace Iamkarsoft\Kudi;
 
-use Iamkarsoft\Kudi\Contracts\ProviderInterface;
 use Illuminate\Support\Facades\Http;
+use Iamkarsoft\Kudi\Providers\FixerApi;
+use Iamkarsoft\Kudi\Providers\CurrencyDataApi;
+use Iamkarsoft\Kudi\Providers\FreeCurrencyApi;
+use Iamkarsoft\Kudi\Contracts\ProviderInterface;
 
 
-class KudiFactory implements ProviderInterface
+class KudiFactory
 {
 
     /**
@@ -15,47 +18,33 @@ class KudiFactory implements ProviderInterface
      * @return mixed
      */
 
-
-
     public function __construct()
     {
-        $this->api_key = config('kudi.kudi_api_key');;
         $this->provider = config('kudi.kudi_api_provider');;
     }
+
+
+
     public function convertFrom($currency, $amount)
     {
-        $currency = ucwords($currency);
+
 
 
         if ($this->provider == 'free currency api') {
-            $response = Http::get("https://freecurrencyapi.net/api/v2/latest?apikey={$this->api_key}&base_currency={$currency}")['data'];
-            $value = number_format($response['GHS'] * $amount, 2, '.', ' ');
+            $provider = new FreeCurrencyApi();
+            $data = $provider->convertFrom($currency, $amount);
         }
-
 
         if ($this->provider == 'currency data api') {
-            $response = Http::withHeaders([
-                'apikey' => $this->api_key
-            ])
-                ->get("https://api.apilayer.com/currency_data/convert?to=GHS&from={$currency}&amount={$amount}")['result'];
-            $value = number_format($response, 2, '.', '');
+            $provider = new CurrencyDataApi();
+            $data = $provider->convertFrom($currency, $amount);
         }
-
 
         if ($this->provider == 'fixer api') {
-            $response = Http::withHeaders([
-                'apikey' => $this->api_key
-            ])
-                ->get("https://api.apilayer.com/currency_data/convert?to=GHS&from={$currency}&amount={$amount}")['result'];
-            $value = number_format($response, 2, '.', '');
+            $provider = new FixerApi();
+            $data = $provider->convertFrom($currency, $amount);
         }
 
-
-        $data = [
-            'value' => $value,
-            "currency" => "GHS",
-            'provider' => $this->provider
-        ];
 
         return $data;
     }
@@ -70,35 +59,16 @@ class KudiFactory implements ProviderInterface
 
     public function convertTo($currency, $amount)
     {
-        $currency = ucwords($currency);
+
         if ($this->provider == 'free currency api') {
-            $response = Http::get("https://freecurrencyapi.net/api/v2/latest?apikey={$this->api_key}&base_currency=GHS")['data'];
-            $value = number_format($response[$currency] * $amount, 2, '.', '');
+            $provider = new FreeCurrencyApi();
+            $data = $provider->convertTo($currency, $amount);
         }
 
         if ($this->provider == 'currency data api') {
-            $response = Http::withHeaders([
-                'apikey' => $this->api_key
-            ])
-                ->get("https://api.apilayer.com/currency_data/convert?to={$currency}&from=GHS&amount={$amount}")['result'];
-            $value = number_format($response, 2, '.', '');
+            $provider = new CurrencyDataApi();
+            $data = $provider->convertTo($currency, $amount);
         }
-
-
-        if ($this->provider == 'fixer api') {
-            $response = Http::withHeaders([
-                'apikey' => $this->api_key
-            ])
-                ->get("https://api.apilayer.com/currency_data/convert?to={$currency}&from=GHS&amount={$amount}")['result'];
-            $value = number_format($response, 2, '.', '');
-        }
-
-
-        $data = [
-            'value' => $value,
-            "currency" => $currency,
-            'provider' => $this->provider
-        ];
 
         return $data;
     }

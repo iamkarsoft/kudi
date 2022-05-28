@@ -12,10 +12,42 @@ class Kudi extends Facade
         return static::make($provider);
     }
 
-    protected static function getFacadeAccessor()
+    public function __construct()
     {
-        return Kudi::class;
+        $this->provider = config('kudi.kudi_api_provider');
     }
+
+
+    /**
+     * @param $amount
+     * @param $currency
+     * @return mixed
+     */
+
+    public function convertFrom($currency, $amount)
+    {
+        $provider =  Kudi::make(preg_replace("/\s+/", "", ucwords($this->provider)));
+        $data = $provider->convertFrom($currency, $amount);
+        return $data;
+    }
+
+    /** 
+     * @param $amount
+     * @param $currency
+     * @return mixed
+     * Converting from GHS to chose Currency
+     */
+    public function convertTo($currency, $amount)
+    {
+        $provider =  Kudi::make(preg_replace("/\s+/", "", ucwords($this->provider)));
+        $data = $provider->convertTo($currency, $amount);
+        return $data;
+    }
+
+    /**
+     * Dynamically return class
+     * @param $provider
+     */
 
     public static function make($provider)
     {

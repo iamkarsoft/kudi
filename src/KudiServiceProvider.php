@@ -14,24 +14,20 @@ class KudiServiceProvider extends ServiceProvider
 
     public function boot()
     {
-
         // publish config file
-
-            $this->publishes([
-                __DIR__ . '/../config/kudi.php' => config_path('kudi.php'),
-            ], 'config');
-
+        $this->publishes([
+            __DIR__ . '/../config/kudi.php' => config_path('kudi.php'),
+        ], 'config');
     }
 
 
     public function register()
     {
-//        $this->app->singleton('kudi', Kudi::class);
-
+        //        $this->app->singleton('kudi', Kudi::class);
         // binding facades
-       $this->app->bind('kudi', function () {
-			return new KudiFactory();
-		});
+        $this->app->bind('kudi', function () {
+            return new KudiFactory();
+        });
 
         $this->mergeConfigFrom(__DIR__ . '/../config/kudi.php', 'kudi');
     }

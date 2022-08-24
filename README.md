@@ -74,7 +74,7 @@ If your request is successful. your response will look something like the follow
 "provider": "currency data api"
 },
 
-// converting from Ghana cedis
+// converting to Euros
 {
 "value": "120.55",
 "currency": "EUR",

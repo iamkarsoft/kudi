@@ -67,7 +67,7 @@ If your request is successful. your response will look something like the follow
 <br>
 
 ```js
-// converting to Ghana Cedis
+// converting from USD to Ghana Cedis
 {
 "value": "7.75",
 "currency": "GHS",

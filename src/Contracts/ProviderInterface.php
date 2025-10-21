@@ -2,9 +2,23 @@
 
 namespace Iamkarsoft\Kudi\Contracts;
 
-
 interface ProviderInterface
 {
-    public function convertFrom($currency, $amount);
-    public function convertTo($currency, $amount);
+    /**
+     * Convert from specified currency to GHS
+     *
+     * @param string $currency
+     * @param float $amount
+     * @return array
+     */
+    public function convertFrom(string $currency, float $amount): array;
+
+    /**
+     * Convert from GHS to specified currency
+     *
+     * @param string $currency
+     * @param float $amount
+     * @return array
+     */
+    public function convertTo(string $currency, float $amount): array;
 }

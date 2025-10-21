@@ -2,17 +2,14 @@
 
 namespace Iamkarsoft\Kudi;
 
-use Iamkarsoft\Kudi\Facades;
-use Iamkarsoft\Kudi\KudiFactory;
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Foundation\config;
-use Illuminate\Support\mergeConfigFrom;
 
 class KudiServiceProvider extends ServiceProvider
 {
-
-
-    public function boot()
+    /**
+     * Bootstrap any package services.
+     */
+    public function boot(): void
     {
         // publish config file
         $this->publishes([
@@ -20,10 +17,11 @@ class KudiServiceProvider extends ServiceProvider
         ], 'config');
     }
 
-
-    public function register()
+    /**
+     * Register any package services.
+     */
+    public function register(): void
     {
-        //        $this->app->singleton('kudi', Kudi::class);
         // binding facades
         $this->app->bind('kudi', function () {
             return new Kudi();

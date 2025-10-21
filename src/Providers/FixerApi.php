@@ -8,6 +8,9 @@ use Iamkarsoft\Kudi\Contracts\ProviderInterface;
 
 class FixerApi implements ProviderInterface
 {
+    protected string $api_key;
+    protected string $provider;
+
     public function __construct()
     {
         $this->api_key = config('kudi.kudi_api_key');
@@ -15,7 +18,7 @@ class FixerApi implements ProviderInterface
     }
 
 
-    public function convertFrom($currency, $amount)
+    public function convertFrom(string $currency, float $amount): array
     {
         $response = Http::withHeaders([
             'apikey' => $this->api_key
@@ -33,7 +36,7 @@ class FixerApi implements ProviderInterface
         return $data;
     }
 
-    public function convertTo($currency, $amount)
+    public function convertTo(string $currency, float $amount): array
     {
 
         $response = Http::withHeaders([

@@ -2,60 +2,57 @@
 
 namespace Iamkarsoft\Kudi;
 
-use Illuminate\Support\Facades\Facade;
+use Iamkarsoft\Kudi\Contracts\ProviderInterface;
 
-class Kudi extends Facade
+class Kudi
 {
-
-    public function __call($provider, $arguments)
-    {
-        return static::make($provider);
-    }
+    protected string $provider;
 
     public function __construct()
     {
         $this->provider = config('kudi.kudi_api_provider');
     }
 
-
     /**
-     * @param $amount
-     * @param $currency
-     * @return mixed
+     * Convert from specified currency to GHS
+     *
+     * @param string $currency
+     * @param float $amount
+     * @return array
      */
-
-    public function convertFrom($currency, $amount)
+    public function convertFrom(string $currency, float $amount): array
     {
-        $provider =  Kudi::make(preg_replace("/\s+/", "", ucwords($this->provider)));
-        $data = $provider->convertFrom($currency, $amount);
-        return $data;
-    }
-
-    /** 
-     * @param $amount
-     * @param $currency
-     * @return mixed
-     * Converting from GHS to chose Currency
-     */
-    public function convertTo($currency, $amount)
-    {
-        $provider =  Kudi::make(preg_replace("/\s+/", "", ucwords($this->provider)));
-        $data = $provider->convertTo($currency, $amount);
-        return $data;
+        $provider = static::make(preg_replace("/\s+/", "", ucwords($this->provider)));
+        return $provider->convertFrom($currency, $amount);
     }
 
     /**
-     * Dynamically return class
-     * @param $provider
+     * Convert from GHS to specified currency
+     *
+     * @param string $currency
+     * @param float $amount
+     * @return array
      */
+    public function convertTo(string $currency, float $amount): array
+    {
+        $provider = static::make(preg_replace("/\s+/", "", ucwords($this->provider)));
+        return $provider->convertTo($currency, $amount);
+    }
 
-    public static function make($provider)
+    /**
+     * Dynamically return provider class
+     *
+     * @param string $provider
+     * @return ProviderInterface|null
+     */
+    public static function make(string $provider): ?ProviderInterface
     {
         $class = "\\Iamkarsoft\\Kudi\\Providers\\" . ucwords($provider);
-
 
         if (class_exists($class)) {
             return new $class();
         }
+
+        return null;
     }
 }

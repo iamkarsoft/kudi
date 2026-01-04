@@ -26,7 +26,8 @@ class CurrencyDataApi implements ProviderInterface
         $response = Http::withHeaders([
             'apikey' => $this->api_key
         ])
-            ->get("https://api.apilayer.com/currency_data/convert?to=GHS&from={$currency}&amount={$amount}")['result'];
+            ->get("https://api.apilayer.com/currency_data/convert?to=GHS&from={$currency}&amount={$amount}")
+            ->json('result');
         $value = number_format($response, 2, '.', '');
 
         $data = [
@@ -46,7 +47,8 @@ class CurrencyDataApi implements ProviderInterface
         $response = Http::withHeaders([
             'apikey' => $this->api_key
         ])
-            ->get("https://api.apilayer.com/currency_data/convert?to={$currency}&from=GHS&amount={$amount}")['result'];
+            ->get("https://api.apilayer.com/currency_data/convert?to={$currency}&from=GHS&amount={$amount}")
+            ->json('result');
         $value = number_format($response, 2, '.', '');
 
 

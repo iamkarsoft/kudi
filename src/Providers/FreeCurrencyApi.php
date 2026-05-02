@@ -19,11 +19,10 @@ class FreeCurrencyApi implements ProviderInterface
 
     public function convertFrom(string $currency, float $amount): array
     {
-        $currency = ucwords($currency);
+        $currency = strtoupper($currency);
 
-
-        $response = Http::get("https://freecurrencyapi.net/api/v2/latest?apikey={$this->api_key}&base_currency={$currency}")['data'];
-        $value = number_format($response['GHS'] * $amount, 2, '.', ' ');
+        $response = Http::get("https://api.freecurrencyapi.com/v1/latest?apikey={$this->api_key}&base_currency={$currency}")['data'];
+        $value = number_format($response['GHS'] * $amount, 2, '.', '');
         $data = [
             'value' => $value,
             "currency" => "GHS",
@@ -36,9 +35,8 @@ class FreeCurrencyApi implements ProviderInterface
 
     public function convertTo(string $currency, float $amount): array
     {
-
-        $currency = ucwords($currency);
-        $response = Http::get("https://freecurrencyapi.net/api/v2/latest?apikey={$this->api_key}&base_currency=GHS")['data'];
+        $currency = strtoupper($currency);
+        $response = Http::get("https://api.freecurrencyapi.com/v1/latest?apikey={$this->api_key}&base_currency=GHS")['data'];
         $value = number_format($response[$currency] * $amount, 2, '.', '');
 
         $data = [

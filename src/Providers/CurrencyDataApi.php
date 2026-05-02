@@ -20,7 +20,7 @@ class CurrencyDataApi implements ProviderInterface
     public function convertFrom(string $currency, float $amount): array
     {
 
-        $currency = ucwords($currency);
+        $currency = strtoupper($currency);
 
 
         $response = Http::withHeaders([
@@ -42,7 +42,7 @@ class CurrencyDataApi implements ProviderInterface
     public function convertTo(string $currency, float $amount): array
     {
 
-        $currency = ucwords($currency);
+        $currency = strtoupper($currency);
 
         $response = Http::withHeaders([
             'apikey' => $this->api_key

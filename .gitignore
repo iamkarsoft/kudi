@@ -9,6 +9,7 @@
 .idea/
 /.vscode
 .claude
+.claude/
 
 .phpunit.result.cache
 Homestead.json

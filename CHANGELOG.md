@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.3.0 - 22 / 06 / 2026
+
+- Add Laravel 13 support (`illuminate/support` and `illuminate/http` ^13.0)
+- Add orchestra/testbench ^11.0 for Laravel 13 testing
+
 ## 0.2.0 - 26 /05 /2022 
 
 - Add another provider [Currency Data Api](https://apilayer.com/marketplace/currency_data-api)

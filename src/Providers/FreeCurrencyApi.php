@@ -21,7 +21,7 @@ class FreeCurrencyApi implements ProviderInterface
     {
         $currency = strtoupper($currency);
 
-        $response = Http::get("https://api.freecurrencyapi.com/v1/latest?apikey={$this->api_key}&base_currency={$currency}")['data'];
+        $response = Http::get("https://api.currencyapi.com/v3/latest?apikey={$this->api_key}&base_currency={$currency}")['data'];
         $value = number_format($response['GHS'] * $amount, 2, '.', '');
         $data = [
             'value' => $value,
